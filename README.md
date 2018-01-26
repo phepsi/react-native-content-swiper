@@ -16,6 +16,16 @@ Or
 npm install react-native-content-swiper
 ```
 
+## Usage
+
+```
+<ContentSwiper>
+  <Image source={yourImage1} />
+  <Image source={yourImage2} />
+  <Image source={yourImage3} />
+</ContentSwiper>
+```
+
 ## NOTE
 
 This is still in development, so you can expect some changes in few days/weeks, but I'm

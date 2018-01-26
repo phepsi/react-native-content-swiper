@@ -1,0 +1,43 @@
+{
+  "name": "react-native-content-swiper",
+  "version": "0.1.0",
+  "description": "Swiper component for React Native where you can swipe images and other content",
+  "main": "src/index.js",
+  "files": [
+    "src/"
+  ],
+  "keywords": [
+    "react-native",
+    "swiper",
+    "images"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "eslint src"
+  },
+  "author": "Petri Tolonen",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phepsi/react-native-content-swiper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/phepsi/react-native-content-swiper/issues"
+  },
+  "homepage": "https://github.com/phepsi/react-native-content-swiper#readme",
+  "dependencies": {
+    "prop-types": "^15.6.0"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.15.0",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-react-native": "^3.2.1",
+    "react": "^16.2.0",
+    "react-native": "^0.52.0"
+  }
+}

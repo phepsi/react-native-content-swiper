@@ -1,0 +1,16 @@
+{
+  "presets": ["babel-preset-expo"],
+  "env": {
+    "development": {
+      "plugins": ["transform-react-jsx-source"]
+    }
+  },
+  "plugins": [
+    ["module-resolver", {
+      "extensions": [".js", ".ios.js", ".android.js"],
+      "alias": {
+        "react-native-imagenary": ".."
+      }
+    }]
+  ]
+}

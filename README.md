@@ -16,6 +16,10 @@ Or
 npm install react-native-content-swiper
 ```
 
+## NOTE
+
+This is still in development, so you can expect some changes in few days/weeks, but I'm
+happy if you already try it.
 
 ## License
 

@@ -1,5 +1,5 @@
 export {ContentOverlay} from './ContentOverlay';
-export {ContentSlider} from './ContentSlider';
+export {ContentSwiper} from './ContentSwiper';
 export {ContentView} from './ContentView';
 export {AutoResizeImage} from './AutoResizeImage';
 

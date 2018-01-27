@@ -64,7 +64,10 @@ export class PanController {
     Animated.parallel([
       Animated.spring(this._indexScrollValue, indexScrollSpringOpts),
       Animated.spring(this._scrollValue, scrollSpringOpts),
-    ]).start();
+    ],
+    {
+      useNativeDrive: true
+    }).start();
   }
 
   setIndexImmediate(index) {

@@ -31,7 +31,7 @@ npm install react-native-content-swiper
 ```
 
 You can use it with normal images, but since we support orientation changes,
-you can use AutoResizeImage instead to support correct scaling in portrait-mode.
+you can use AutoResizeImage instead to support correct scaling in landscape-mode.
 
 ```
 <ContentSwiper>

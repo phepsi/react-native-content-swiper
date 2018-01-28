@@ -67,7 +67,8 @@ export class ContentView extends PureComponent {
           animatedIndex={this._aIndex}
           animatedLayoutWidth={this._layoutWidth}
           animatedLayoutHeight={this._layoutHeight}
-          animator={animator}>
+          animator={animator}
+          rotationController={this._rotationController}>
           {child}
         </ContentItem>
       );
@@ -79,10 +80,8 @@ export class ContentView extends PureComponent {
   render() {
     const {onPress, controller, indicatorAnimator, theme} = this.props;
 
-    const rotationStyle = this._rotationController.getStyle();
-
     return (
-      <Animated.View style={[styles.container, rotationStyle]} {...controller.getPanHandlers()} onLayout={this.onLayout}>
+      <View style={styles.container} {...controller.getPanHandlers()} onLayout={this.onLayout}>
         <TouchableWithoutFeedback onPress={onPress}>
           <View style={styles.content}>
             {this.items}
@@ -93,7 +92,7 @@ export class ContentView extends PureComponent {
               theme={theme} />
           </View>
         </TouchableWithoutFeedback>
-      </Animated.View>
+      </View>
     );
   }
 }

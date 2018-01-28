@@ -32,12 +32,17 @@ export class ContentItem extends PureComponent {
   }
 
   refresh(props) {
-    const {animatedIndex, animatedLayoutWidth, animatedLayoutHeight, itemIndex, animator, children} = props;
+    const {animatedIndex, animatedLayoutWidth, animatedLayoutHeight, itemIndex, animator, rotationController, children} = props;
 
     const idx = Animated.add(animatedIndex, new Animated.Value(itemIndex));
 
     this.style = animator(idx, animatedLayoutWidth, animatedLayoutHeight);
-
+    this.rotationStyle = {
+      transform: [
+        { rotate: rotationController.getInverseRotationValue() },
+        { scale: rotationController.getScale(this.contentAspectRatio) }
+      ]
+    }
     if (this._children !== children) {
       this._children = children;
       this.wrappedChild = React.cloneElement(children, { onContentSizeResolved: this.onContentSizeResolved });
@@ -47,7 +52,9 @@ export class ContentItem extends PureComponent {
   render() {
     return (
       <Animated.View style={[styles.container, this.style]}>
-        {this.wrappedChild}
+        <Animated.View style={this.rotationStyle}>
+          {this.wrappedChild}
+        </Animated.View>
       </Animated.View>
     );
   }
@@ -60,6 +67,7 @@ ContentItem.propTypes = {
   animatedLayoutHeight: PropTypes.any.isRequired,
   itemIndex: PropTypes.number.isRequired,
   animator: PropTypes.func.isRequired,
+  rotationController: PropTypes.object.isRequired,
 }
 
 export default ContentItem;

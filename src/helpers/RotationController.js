@@ -13,31 +13,11 @@ const scos = (deg) => Math.abs(Math.cos(deg2rad(deg)));
 
 export class RotationController {
 
-  constructor(initialRotation, layoutWidth, layoutHeight) {
+  constructor(initialRotation) {
     this._currentRotation = initialRotation;
     this._rotationValue = new Animated.Value(initialRotation);
     this._sinv = new Animated.Value(ssin(initialRotation));
     this._cosv = new Animated.Value(scos(initialRotation));
-
-    const aspectRatio = Animated.divide(layoutWidth, layoutHeight);
-    const scale = Animated.add(
-      this._cosv,
-      Animated.multiply(this._sinv, aspectRatio)
-    );
-
-    this._rotationStyle = {
-      transform: [
-        {
-          rotate: this._rotationValue.interpolate({
-            inputRange: [-360, 0, 360],
-            outputRange: ['360deg', '0deg', '-360deg'] // Rotate to opposite direction
-          })
-        },
-        {
-          scale: scale,
-        }
-      ]
-    }
   }
 
   setRotation(rotation) {
@@ -57,7 +37,20 @@ export class RotationController {
     Animated.timing(this._rotationValue, rotationTimingOpts).start();
   }
 
-  getStyle() {
-    return this._rotationStyle;
+  getScale(aspectRatio) {
+    return Animated.add(this._cosv, Animated.multiply(this._sinv, aspectRatio));
+  }
+
+  getRotationValue() {
+    return this._rotationValue.interpolate({
+      inputRange: [-360, 0, 360],
+      outputRange: ['-360deg', '0deg', '360deg']
+    });
+  }
+  getInverseRotationValue() {
+    return this._rotationValue.interpolate({
+      inputRange: [-360, 0, 360],
+      outputRange: ['360deg', '0deg', '-360deg'] // Rotate to opposite direction
+    });
   }
 }

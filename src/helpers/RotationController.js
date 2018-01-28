@@ -29,8 +29,8 @@ export class RotationController {
       transform: [
         {
           rotate: this._rotationValue.interpolate({
-            inputRange: [-180, 0, 180],
-            outputRange: ['-180deg', '0deg', '180deg']
+            inputRange: [-360, 0, 360],
+            outputRange: ['360deg', '0deg', '-360deg'] // Rotate to opposite direction
           })
         },
         {

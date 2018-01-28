@@ -44,6 +44,9 @@ export class ContentSwiper extends PureComponent {
     const {children, clickThreshold, animator, indicatorAnimator, orientation} = this.props;
     const {fullScreenMode} = this.state;
 
+    const no = this._mergedTheme.allowRotationNormal ? orientation : undefined;
+    const fso = this._mergedTheme.allowRotationFullScreen ? orientation : undefined;
+
     return (
       <View style={styles.container}>
 
@@ -53,7 +56,7 @@ export class ContentSwiper extends PureComponent {
           clickThreshold={clickThreshold}
           animator={animator}
           indicatorAnimator={indicatorAnimator}
-          orientation={orientation}
+          orientation={no}
           controller={this._panController}
           theme={this._mergedTheme}>
           {children}
@@ -66,7 +69,7 @@ export class ContentSwiper extends PureComponent {
             clickThreshold={clickThreshold}
             animator={animator}
             indicatorAnimator={indicatorAnimator}
-            orientation={orientation}
+            orientation={fso}
             controller={this._panController}
             theme={this._mergedTheme}>
             {children}

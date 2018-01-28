@@ -9,4 +9,6 @@ export const defaultTheme = {
   backgroundColor: colors.black,
   overlayBackgroundColor: colors.transparent,
   indicatorColor: colors.white,
+  allowRotationNormal: false,
+  allowRotationFullScreen: true,
 }

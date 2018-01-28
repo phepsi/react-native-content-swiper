@@ -4,6 +4,10 @@ React Native Content Swiper is simple "plain JS" image viewer component for your
 RN/Expo app that includes multiple pre-defined animations, but you can easily make
 your own.
 
+Component supports orientation that you can limit to happen in fullscreen-mode
+only, so even if your application is locked to portrait-mode, you can enable
+image rotations in fullscreen.
+
 ## Installation
 
 ```sh

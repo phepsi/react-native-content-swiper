@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScreenOrientation, DangerZone } from 'expo';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
 import { ContentSwiper, Animators, AutoResizeImage } from 'react-native-imagenary';
 
 const imageSource1 = { uri: 'http://wp.patheos.com.s3.amazonaws.com/blogs/faithwalkers/files/2013/03/bigstock-Test-word-on-white-keyboard-27134336.jpg' };

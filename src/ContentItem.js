@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
 export class ContentItem extends PureComponent {
 
   componentWillMount() {
+    this.contentAspectRatio = new Animated.Value(1);
+
     this.refresh(this.props);
   }
 
@@ -25,20 +27,27 @@ export class ContentItem extends PureComponent {
     this.refresh(nextProps);
   }
 
+  onContentSizeResolved = (width, height) => {
+    this.contentAspectRatio.setValue(width / height);
+  }
+
   refresh(props) {
-    const {animatedIndex, animatedLayoutWidth, animatedLayoutHeight, itemIndex, animator} = props;
+    const {animatedIndex, animatedLayoutWidth, animatedLayoutHeight, itemIndex, animator, children} = props;
 
     const idx = Animated.add(animatedIndex, new Animated.Value(itemIndex));
 
     this.style = animator(idx, animatedLayoutWidth, animatedLayoutHeight);
+
+    if (this._children !== children) {
+      this._children = children;
+      this.wrappedChild = React.cloneElement(children, { onContentSizeResolved: this.onContentSizeResolved });
+    }
   }
 
   render() {
-    const {children} = this.props;
-
     return (
       <Animated.View style={[styles.container, this.style]}>
-        {children}
+        {this.wrappedChild}
       </Animated.View>
     );
   }

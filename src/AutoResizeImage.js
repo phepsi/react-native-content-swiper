@@ -33,7 +33,12 @@ export class AutoResizeImage extends PureComponent {
     this.setState({ loading: true });
 
     try {
+      const {onContentSizeResolved} = this.props;
       const {width, height} = await resolveDimensions(source);
+
+      if (onContentSizeResolved) {
+        onContentSizeResolved(width, height);
+      }
 
       this.setState({
         loading: false,
@@ -68,6 +73,7 @@ AutoResizeImage.propTypes = {
   source: PropTypes.any,
   style: PropTypes.any,
   onError: PropTypes.func,
+  onContentSizeResolved: PropTypes.func,
 }
 
 export default AutoResizeImage;

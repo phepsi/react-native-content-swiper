@@ -50,9 +50,12 @@ export default class App extends React.Component {
   onDeviceMotionEvent = (e) => {
     const {orientation} = e;
 
-    this.setState({
-      orientation
-    });
+    // Update only when changed
+    if (orientation !== this.state.orientation) {
+      this.setState({
+        orientation
+      });
+    }
   }
 
   render() {

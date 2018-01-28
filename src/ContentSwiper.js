@@ -34,7 +34,11 @@ export class ContentSwiper extends PureComponent {
   }
 
   openFullScreen = () => {
-    this.setState({ fullScreenMode: true });
+    const {allowFullscreen} = this.props;
+
+    if (allowFullscreen) {
+      this.setState({ fullScreenMode: true });
+    }
   }
   closeFullScreen = () => {
     this.setState({ fullScreenMode: false });
@@ -88,6 +92,7 @@ ContentSwiper.propTypes = {
   animator: PropTypes.func,
   indicatorAnimator: PropTypes.func,
   orientation: PropTypes.number,
+  allowFullscreen: PropTypes.bool,
   theme: PropTypes.object,
 }
 
@@ -97,6 +102,7 @@ ContentSwiper.defaultProps = {
   animator: Slide,
   indicatorAnimator: Scale,
   orientation: 0,
+  allowFullscreen: true,
   theme: {},
 }
 

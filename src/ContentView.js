@@ -4,16 +4,18 @@ import {View, Animated, TouchableWithoutFeedback} from 'react-native';
 import {buildStyles} from './styles';
 import {ContentItem} from './ContentItem';
 import {ContentOverlay} from './ContentOverlay';
+import {RotationController} from './helpers/RotationController';
 
 export class ContentView extends PureComponent {
 
   componentWillMount() {
-    const {controller, theme} = this.props;
+    const {controller, theme, orientation} = this.props;
     this._layoutWidth = new Animated.Value(1);
     this._layoutHeight = new Animated.Value(1);
     this._aIndex = controller.getAnimatedIndex(this._layoutWidth);
     this.styles = buildStyles('contentView', theme);
     this.itemStyles = buildStyles('contentItem', theme);
+    this._rotationController = new RotationController(orientation, this._layoutWidth, this._layoutHeight);
 
     const {children, animator} = this.props;
     this.items = this.buildChildItems(children, animator);
@@ -29,11 +31,17 @@ export class ContentView extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {children, animator} = nextProps;
+    const {children, animator, orientation} = nextProps;
     this.items = this.buildChildItems(children, animator);
+    this._rotationController.setRotation(orientation);
   }
 
   buildChildItems(children, animator) {
+    if (this._children === children) {
+      return;
+    }
+    this._children = children;
+
     const items = Children.map(children, (child, idx) => {
       const key = child.key || `ci-${idx}`;
 
@@ -56,8 +64,10 @@ export class ContentView extends PureComponent {
   render() {
     const {onPress, controller, indicatorAnimator, theme} = this.props;
 
+    const rotationStyle = this._rotationController.getStyle();
+
     return (
-      <View style={this.styles.container} {...controller.getPanHandlers()} onLayout={this.onLayout}>
+      <Animated.View style={[this.styles.container, rotationStyle]} {...controller.getPanHandlers()} onLayout={this.onLayout}>
         <TouchableWithoutFeedback onPress={onPress}>
           <View style={this.styles.content}>
             {this.items}
@@ -68,7 +78,7 @@ export class ContentView extends PureComponent {
               theme={theme} />
           </View>
         </TouchableWithoutFeedback>
-      </View>
+      </Animated.View>
     );
   }
 }
@@ -79,10 +89,12 @@ ContentView.propTypes = {
   animator: PropTypes.func.isRequired,
   indicatorAnimator: PropTypes.func.isRequired,
   controller: PropTypes.object.isRequired,
+  orientation: PropTypes.number,
   theme: PropTypes.object,
 }
 
 ContentView.defaultProps = {
+  orientation: 0,
 }
 
 export default ContentView;

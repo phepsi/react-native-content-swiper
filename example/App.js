@@ -33,7 +33,8 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      animator: Animators.Slide
+      animator: Animators.Slide,
+      orientation: 0,
     };
   }
 
@@ -47,15 +48,19 @@ export default class App extends React.Component {
   }
 
   onDeviceMotionEvent = (e) => {
-    console.log(e);
+    const {orientation} = e;
+
+    this.setState({
+      orientation
+    });
   }
 
   render() {
-    const {animator} = this.state;
+    const {animator, orientation} = this.state;
 
     return (
       <View style={styles.container}>
-        <ContentSwiper animator={animator}>
+        <ContentSwiper animator={animator} orientation={orientation}>
           <AutoResizeImage style={styles.image} source={imageSource1} resizeMode="contain" />
           <AutoResizeImage style={styles.image} source={imageSource2} resizeMode="contain" />
           <AutoResizeImage style={styles.image} source={imageSource3} resizeMode="contain" />

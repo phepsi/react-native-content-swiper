@@ -33,7 +33,7 @@ export class ContentSwiper extends PureComponent {
   }
 
   render() {
-    const {children, clickThreshold, animator, indicatorAnimator, theme} = this.props;
+    const {children, clickThreshold, animator, indicatorAnimator, orientation, theme} = this.props;
     const {fullScreenMode} = this.state;
 
     return (
@@ -44,6 +44,7 @@ export class ContentSwiper extends PureComponent {
           clickThreshold={clickThreshold}
           animator={animator}
           indicatorAnimator={indicatorAnimator}
+          orientation={orientation}
           controller={this._panController}
           theme={theme}>
           {children}
@@ -55,6 +56,7 @@ export class ContentSwiper extends PureComponent {
             clickThreshold={clickThreshold}
             animator={animator}
             indicatorAnimator={indicatorAnimator}
+            orientation={orientation}
             controller={this._panController}
             theme={theme}>
             {children}
@@ -72,6 +74,7 @@ ContentSwiper.propTypes = {
   startIndex: PropTypes.number,
   animator: PropTypes.func,
   indicatorAnimator: PropTypes.func,
+  orientation: PropTypes.number,
   theme: PropTypes.object,
 }
 
@@ -80,6 +83,7 @@ ContentSwiper.defaultProps = {
   startIndex: 0,
   animator: Slide,
   indicatorAnimator: Scale,
+  orientation: 0,
 }
 
 export default ContentSwiper;

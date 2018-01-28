@@ -1,20 +1,36 @@
 import React, {PureComponent, Children} from 'react';
 import PropTypes from 'prop-types';
-import {View, Animated, TouchableWithoutFeedback} from 'react-native';
-import {buildStyles} from './styles';
+import {View, Animated, TouchableWithoutFeedback, StyleSheet} from 'react-native';
 import {ContentItem} from './ContentItem';
 import {ContentOverlay} from './ContentOverlay';
 import {RotationController} from './helpers/RotationController';
 
+const styles = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  content: {
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+  }
+});
+
 export class ContentView extends PureComponent {
 
   componentWillMount() {
-    const {controller, theme, orientation} = this.props;
+    const {controller, orientation} = this.props;
     this._layoutWidth = new Animated.Value(1);
     this._layoutHeight = new Animated.Value(1);
     this._aIndex = controller.getAnimatedIndex(this._layoutWidth);
-    this.styles = buildStyles('contentView', theme);
-    this.itemStyles = buildStyles('contentItem', theme);
     this._rotationController = new RotationController(orientation, this._layoutWidth, this._layoutHeight);
 
     const {children, animator} = this.props;
@@ -47,7 +63,6 @@ export class ContentView extends PureComponent {
 
       return (
         <ContentItem key={key}
-          style={this.itemStyles.container}
           itemIndex={idx}
           animatedIndex={this._aIndex}
           animatedLayoutWidth={this._layoutWidth}
@@ -67,9 +82,9 @@ export class ContentView extends PureComponent {
     const rotationStyle = this._rotationController.getStyle();
 
     return (
-      <Animated.View style={[this.styles.container, rotationStyle]} {...controller.getPanHandlers()} onLayout={this.onLayout}>
+      <Animated.View style={[styles.container, rotationStyle]} {...controller.getPanHandlers()} onLayout={this.onLayout}>
         <TouchableWithoutFeedback onPress={onPress}>
-          <View style={this.styles.content}>
+          <View style={styles.content}>
             {this.items}
             <ContentOverlay
               itemsCount={this.items.length}

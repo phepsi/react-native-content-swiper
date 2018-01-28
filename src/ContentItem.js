@@ -1,6 +1,19 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {Animated} from 'react-native';
+import {Animated, StyleSheet} from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export class ContentItem extends PureComponent {
 
@@ -21,10 +34,10 @@ export class ContentItem extends PureComponent {
   }
 
   render() {
-    const {children, style} = this.props;
+    const {children} = this.props;
 
     return (
-      <Animated.View style={[style, this.style]}>
+      <Animated.View style={[styles.container, this.style]}>
         {children}
       </Animated.View>
     );
@@ -38,7 +51,6 @@ ContentItem.propTypes = {
   animatedLayoutHeight: PropTypes.any.isRequired,
   itemIndex: PropTypes.number.isRequired,
   animator: PropTypes.func.isRequired,
-  style: PropTypes.any,
 }
 
 export default ContentItem;

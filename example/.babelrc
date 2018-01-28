@@ -9,7 +9,7 @@
     ["module-resolver", {
       "extensions": [".js", ".ios.js", ".android.js"],
       "alias": {
-        "react-native-imagenary": ".."
+        "react-native-content-swiper": ".."
       }
     }]
   ]

@@ -1,14 +1,18 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {View, Modal} from 'react-native';
-import {buildStyles} from './styles';
+import {View, Modal, StyleSheet} from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+});
 
 export class ContentModal extends PureComponent {
-
-  componentWillMount() {
-    const {theme} = this.props;
-    this.styles = buildStyles('contentModal', theme);
-  }
 
   render() {
     const {children, visible, onClose} = this.props;
@@ -19,7 +23,7 @@ export class ContentModal extends PureComponent {
         animationType='fade'
         presentationStyle='overFullScreen'
         onRequestClose={onClose}>
-        <View style={this.styles.container}>
+        <View style={styles.container}>
           {children}
         </View>
       </Modal>

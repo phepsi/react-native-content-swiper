@@ -1,9 +1,9 @@
 import React from 'react';
 import { ScreenOrientation, DangerZone } from 'expo';
-import { StyleSheet, View, Text, Button } from 'react-native';
-import { ContentSwiper, Animators, AutoResizeImage } from 'react-native-imagenary';
+import { StyleSheet, View, Button } from 'react-native';
+import { ContentSwiper, Animators, AutoResizeImage } from 'react-native-content-swiper';
 
-const imageSource1 = { uri: 'http://wp.patheos.com.s3.amazonaws.com/blogs/faithwalkers/files/2013/03/bigstock-Test-word-on-white-keyboard-27134336.jpg' };
+const imageSource1 = { uri: 'https://www.polarspin.com/static/img/brand-image.jpg' };
 import imageSource2 from './assets/sample-2.jpg';
 import imageSource3 from './assets/sample-3.png';
 
@@ -33,7 +33,8 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      animator: Animators.Slide
+      animator: Animators.Slide,
+      orientation: 0,
     };
   }
 
@@ -47,15 +48,22 @@ export default class App extends React.Component {
   }
 
   onDeviceMotionEvent = (e) => {
-    console.log(e);
+    const {orientation} = e;
+
+    // Update only when changed
+    if (orientation !== this.state.orientation) {
+      this.setState({
+        orientation
+      });
+    }
   }
 
   render() {
-    const {animator} = this.state;
+    const {animator, orientation} = this.state;
 
     return (
       <View style={styles.container}>
-        <ContentSwiper animator={animator}>
+        <ContentSwiper animator={animator} orientation={orientation}>
           <AutoResizeImage style={styles.image} source={imageSource1} resizeMode="contain" />
           <AutoResizeImage style={styles.image} source={imageSource2} resizeMode="contain" />
           <AutoResizeImage style={styles.image} source={imageSource3} resizeMode="contain" />

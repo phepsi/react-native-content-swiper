@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScreenOrientation, DangerZone } from 'expo';
 import { StyleSheet, View, Button } from 'react-native';
-import { ContentSwiper, Animators, AutoResizeImage } from 'react-native-imagenary';
+import { ContentSwiper, Animators, AutoResizeImage } from 'react-native-content-swiper';
 
 const imageSource1 = { uri: 'https://www.polarspin.com/static/img/brand-image.jpg' };
 import imageSource2 from './assets/sample-2.jpg';

@@ -9,7 +9,8 @@
   "keywords": [
     "react-native",
     "swiper",
-    "images"
+    "images",
+    "image-viewer"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

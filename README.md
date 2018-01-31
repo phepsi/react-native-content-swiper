@@ -52,6 +52,12 @@ but since they are simple interpolators you can easily do your own too.
 </ContentSwiper>
 ```
 
+## Included Animation Styles
+
+![Slide](https://www.polarspin.com/static/img/rn-swiper-style-1.gif)
+![SlideZoom](https://www.polarspin.com/static/img/rn-swiper-style-2.gif)
+![RotateY](https://www.polarspin.com/static/img/rn-swiper-style-3.gif)
+![Stack](https://www.polarspin.com/static/img/rn-swiper-style-4.gif)
 
 ## License
 
